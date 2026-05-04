@@ -1,14 +1,13 @@
 import customtkinter as ctk
-
 from views.login import pantalla_login
 from views.clientes import pantalla_clientes
-from views.registrar_servicio import pantalla_registrar_servicio
-from views.pagar_servicio import pantalla_pagar_servicio
+from views.servicios import pantalla_servicios
 from views.reportes import pantalla_reportes
 from views.vehiculos import pantalla_vehiculos
 from views.usuarios import pantalla_usuarios
 from views.estacionamientos import pantalla_registro_estacionamientos
 
+from pruevaQR import QRscaner
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -28,14 +27,15 @@ class App(ctk.CTk):
         self.menu_lateral = ctk.CTkFrame(self, width=200, corner_radius=0)
         self.menu_lateral.grid(row=0, column=0, sticky="nsew")
         
+        scaner = QRscaner(self)
+        scaner.iniciar_camara()
         ctk.CTkLabel(self.menu_lateral, text="PARKING APP", font=("Arial", 20, "bold")).pack(pady=30)
 
         # Botones de Navegación
         btn_estilo = {"width": 180, "height": 40, "anchor": "w"}
         
         ctk.CTkButton(self.menu_lateral, text="🔑 Pantalla Login", command=lambda: pantalla_login(self.contenedor), **btn_estilo).pack(pady=5)
-        ctk.CTkButton(self.menu_lateral, text="🚗 Registro Entrada", command=lambda: pantalla_registrar_servicio(self.contenedor), **btn_estilo).pack(pady=5)
-        ctk.CTkButton(self.menu_lateral, text="💰 Cobro y Salida", command=lambda: pantalla_pagar_servicio(self.contenedor), **btn_estilo).pack(pady=5)
+        ctk.CTkButton(self.menu_lateral, text="🚗 servicios", command=lambda: pantalla_servicios(self.contenedor), **btn_estilo).pack(pady=5)
         ctk.CTkButton(self.menu_lateral, text="📈 Reportes Admin", command=lambda: pantalla_reportes(self.contenedor), **btn_estilo).pack(pady=5)
         ctk.CTkButton(self.menu_lateral, text="📈 Registro clientes", command=lambda: pantalla_clientes(self.contenedor), **btn_estilo).pack(pady=5)
         ctk.CTkButton(self.menu_lateral, text="📈 Registro vehiculos", command=lambda: pantalla_vehiculos(self.contenedor), **btn_estilo).pack(pady=5)

@@ -245,6 +245,30 @@ class PasswordEntry(ctk.CTkFrame):
     def clear(self):
         self.entry.delete(0, "end")
 
+import customtkinter as ctk
+
+def mostrar_mensaje(titulo, mensaje):
+
+    ventana_msg = ctk.CTkToplevel()
+
+    ventana_msg.title(titulo)
+    ventana_msg.geometry("300x150")
+
+    lbl = ctk.CTkLabel(
+        ventana_msg,
+        text=mensaje,
+        wraplength=250
+    )
+
+    lbl.pack(pady=20)
+
+    btn = ctk.CTkButton(
+        ventana_msg,
+        text="Aceptar",
+        command=ventana_msg.destroy
+    )
+
+    btn.pack(pady=10)
 # --- DEMO DE USO ---
 if __name__ == "__main__":
     try:

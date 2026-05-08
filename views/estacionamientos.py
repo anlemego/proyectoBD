@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import myCustomTkinter as mctk
 from utils.helpers import limpiar_ventana
 
 def pantalla_registro_estacionamientos(ventana):

@@ -15,10 +15,30 @@ def revisar_credenciales(entry_u, entry_p):
     db = usuario_bd()
     resultado = db.HacerLogin(usuario)
     if resultado:
-        id_usuario_logueado, perfil = resultado
-        print(f"Intento de login - Usuario: {nombre_usuario}, Password: {password}")
+        id_usuario_logueado, perfil, nombre_usuario = resultado
+        MostrarPopUp(nombre_usuario, True)
+        print(f"Intento de login - ID_Usuario: {id_usuario_logueado}, Perfil: {perfil}, Usuario: {nombre_usuario}, Password: {password}")
+    else:
+        MostrarPopUp(None, False)
     
-    
+def MostrarPopUp(nombre_usuario, ingresado):
+    if (ingresado == True):
+        mensaje = f"Sesión iniciada: {nombre_usuario}"
+    else:
+        mensaje = f"No se pudo autenticr este usuario"
+    popup = ctk.CTkToplevel()
+    popup.title("Inicio de Sesión")
+
+    popup.geometry("350x150")
+
+    popup.grab_set() #No puede interactuar con el fondo  hasta cerrar el pop-up
+    popup.attributes("-topmost", True)
+
+    etiqueta = ctk.CTkLabel(popup, text=mensaje, font=("Roboto", 16, "bold"))
+    etiqueta.pack(pady=(30, 20))
+
+    boton_aceptar = ctk.CTkButton(popup, text="Aceptar", command=popup.destroy)
+    boton_aceptar.pack()    
     
 
 def pantalla_login(ventana):

@@ -616,7 +616,7 @@ def pantalla_servicios(ventana,scaner):
         # ---------------- BOTON ----------------
         def cancelar():
             scaner.detener_escaneo()
-            vista_registrar_servicio()
+            vista_registrar_servicio(frame)
         
         btn_cancelar = ctk.CTkButton(
             frame,

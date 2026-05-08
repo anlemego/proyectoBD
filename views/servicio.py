@@ -1,11 +1,11 @@
 import customtkinter as ctk
 from CTkTable import CTkTable
 
-def limpiar_ventana(ventana):
-    for widget in ventana.winfo_children():
-        widget.destroy()
+from utils.helpers import limpiar_ventana
 
 def pantalla_servicios(ventana,scaner):
+    limpiar_ventana(ventana)
+
     #region configuracion de vista
     # =====================================================
     # CONFIGURACION GRID PRINCIPAL
@@ -444,21 +444,21 @@ def pantalla_servicios(ventana,scaner):
             ],
             [
                 "Estacionamiento\n(Hora)",
-                "$20",
-                "$15",
-                "Después de 5\nhoras"
+                "$30",
+                "$25",
+                "Después de\n5 horas"
             ],
             [
                 "Estacionamiento\ncliente frecuente\n(Hora)",
-                "$15",
-                "$10",
-                "Después de 5\nhoras"
+                "$26",
+                "$22",
+                "Después de\n5 horas"
             ],
             [
                 "pensión",
                 "$500",
                 "$400",
-                "Después de 2 años"
+                "Después de\n2 años"
             ]
         ]
 
@@ -656,6 +656,11 @@ def pantalla_servicios(ventana,scaner):
     btn_buscar.configure(command = buscar)
     #endregion
 
-app = ctk.CTk()
-pantalla_servicios(app)
-app.mainloop()
+if __name__ == "__main__":
+    app = ctk.CTk()
+    from pruevaQR import QRscaner
+    scaner = QRscaner(app)
+    scaner.iniciar_camara()
+    
+    pantalla_servicios(app,scaner)
+    app.mainloop()

@@ -616,7 +616,7 @@ def pantalla_servicios(ventana,scaner):
         # ---------------- BOTON ----------------
         def cancelar():
             scaner.detener_escaneo()
-            vista_registrar_servicio()
+            vista_registrar_servicio(frame)
         
         btn_cancelar = ctk.CTkButton(
             frame,
@@ -656,6 +656,6 @@ def pantalla_servicios(ventana,scaner):
     btn_buscar.configure(command = buscar)
     #endregion
 
-app = ctk.CTk()
-pantalla_servicios(app)
-app.mainloop()
+if __name__ == "__main__":
+    app = ctk.CTk()
+    app.mainloop()

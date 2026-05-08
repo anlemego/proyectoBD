@@ -123,6 +123,7 @@ class Cliente:
     def set_tiempo_pension(self, valor):
         self._tiempo_pension = valor
         
+
 class Vehiculo:
     def __init__(self):
         self._matricula = ""
@@ -160,4 +161,3 @@ class Vehiculo:
 
     def set_cliente_id(self, valor):
         self._cliente_id = valor
-        
